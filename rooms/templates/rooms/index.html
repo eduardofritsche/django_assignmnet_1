@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+
+    <!-- Page Heading -->
+    <h1 class="my-4">Rooms
+        <small>to book</small>
+    </h1>
+    <hr>
+    <!-- loop through 'samples/rooms' list -->
+    {% for room in rooms %}
+    <div class="row">
+        <div class="col-md-7">
+        <a href="{% url 'rooms:detail' room.room_id %}">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="../../static/rooms/room_{{room.room_id}}.jpeg" alt="room image">
+        </a>
+        </div>
+        <div class="col-md-5">
+        <h3 class="text-capitalize d-inline-block">{{room.name}}</h3>
+        <h3 class="d-inline-block float-right">${{room.value}}</h3>
+        <p>{{room.description}}</p>
+        <a class="btn btn-primary" href="{% url 'rooms:detail' room.room_id %}">More Details</a>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+    {% endfor %}
+</div>
+<!-- /.container -->
+{% endblock %}

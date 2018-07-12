@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-5">
+    
+    <!-- Hotel Room Heading -->
+    <h1 class="my-4 text-capitalize">{{room.name}}</h1>
+
+    <!-- Hotel Room Row -->
+    <div class="row">
+
+        <div class="col-md-8">
+        <img class="img-fluid" src="../../static/rooms/detail_room_{{room.room_id}}.jpeg" alt="">
+        </div>
+
+        <div class="col-md-4">
+        <h3 class="my-3">Room Description</h3>
+        <p>{{room.description}}</p>
+        <h3 class="my-3">Room Details</h3>
+        <ul>
+            <li>Lorem Ipsum</li>
+            <li>Dolor Sit Amet</li>
+            <li>Consectetur</li>
+            <li>Adipiscing Elit</li>
+        </ul>
+        <a href="">
+            <button class="btn btn-success btn-block d-inline-block mt-5" type="button">Book Now</button>
+        </a>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+{% endblock %}
