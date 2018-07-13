@@ -3,19 +3,19 @@
 
 <div class="container">
     <!-- Reservation Header -->
-    <h1 class="my-5">Page Title <small>subtitle</small></h1>
-
+    <h1 class="my-5">Reservation</h1>
+    
     <!-- Reservation Form -->
-    <form action="{% url 'reservation:confirmation' %}" method="POST" class="mb-5">
+    <form action="#" method="POST" class="mb-5">
     {% csrf_token %}
         
         <!-- Name Row -->
-        <div class="row w-50 mx-auto">
+        <div class="row">
 
             <!-- First Name Field -->            
             <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" name="fname" class="form-control" id="firstName">
+                <input type="text" name="first-name" class="form-control" id="firstName" required>
                 <div class="invalid-feedback">
                 Valid first name is required.
                 </div>
@@ -24,7 +24,7 @@
             <!-- First Name Field -->
             <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="">
+                <input type="text" name="last-name" class="form-control" id="lastName" required>
                 <div class="invalid-feedback">
                 Valid last name is required.
                 </div>
@@ -32,44 +32,77 @@
         </div>
 
         <!-- Date Row -->
-        <div class="row w-50 mx-auto">
+        <div class="row">
 
             <!-- Check-in Field -->
             <div class="col-md-6 mb-3">
-                <label for="cin">First name</label>
-                <input type="date" name="check-in" class="" id="cin">
+                <label for="check-in">Check-in</label>
+                <input type="date" name="check-in" class="form-control" id="check-in" required>
                 <div class="invalid-feedback">
-                Valid first name is required.
+                Valid date is required.
                 </div>
             </div>
 
             <!-- Check-out Field -->
             <div class="col-md-6 mb-3">
-                <label for="check-out">Last name</label>
-                <input type="date" name="check-out" class="form-control" id="check-out">
+                <label for="check-out">Check-out</label>
+                <input type="date" name="check-out" class="form-control" id="check-out" required>
                 <div class="invalid-feedback">
-                Valid last name is required.
+                Valid date is required.
                 </div>
             </div>
         </div>
         
         <!-- List of Rooms -->
-        <ul class="list-group w-50 mx-auto px-0">
+        <ul id="reservation_rooms" class="list-group">
             {% for room in rooms %}
-            <li class="list-group-item list-group-item-action row">
+            <li class="list-group-item list-group-item-action">
                 
                 <input type="radio" class="col-2 my-auto" name="room" id="room{{ forloop.counter }}" value="{{ room.room_id }}">
                 
-                <label for="room{{ forloop.counter }}" class="col-8"><h4>{{ room }}</h4></label>
-                <!-- <p>{{room}}</p> -->
+                <label for="room{{ forloop.index }}" class="col-8"><h4>{{ room }}</h4></label>
                 
-                <span class="col-2">$3</span>
+                <span class="col-2 font-weight-bold" id="room{{ forloop.counter }}_span">${{room.value}}</span>
+
             {% endfor %}
             </li>
         </ul>
 
-        <!-- Send Button -->
-        <button class="btn btn-primary btn-lg btn-block w-50 mx-auto mt-4" type="submit">Confirm</button>
+        <!-- Button trigger modal -->
+        <button type="submit" id="res_btn" class="btn btn-primary" data-toggle="modal" data-target="#modalReservation">
+            Confirm
+        </button>
+
     </form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalReservation" tabindex="-1" role="dialog" aria-labelledby="modalReservation" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalReservationLabel">Confirm Reservation</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li id="modal_first_name"></li>
+                <li id="modal_last_name"></li>
+                <li id="modal_check_in"></li>
+                <li id="modal_check_out"></li>
+                <li id="modal_final_cost"></li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="{% url 'reservation:confirmation' %}">
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </a>
+        </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -7,7 +7,9 @@
     <div class="w-50 mx-auto my-3 py-3">
         <h1 class="display-1">Royale <small>Hotel</small></h1>
         <p class="mt-3 mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, esse corrupti ad officia sint ut necessitatibus placeat dolor harum eius dolores illum labore, voluptatibus animi at corporis impedit repellendus rerum.</p>
-        <button type="button" class="btn btn-success">booking</button>
+        <a href="{% url 'reservation:index' %}">
+            <button type="button" class="btn btn-success">booking</button>
+        </a>
     </div>
 </header> 
 
