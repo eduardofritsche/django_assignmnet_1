@@ -1,22 +1,43 @@
 // RESERVATION page
-var res_btn = document.querySelector('#res_btn');
-res_btn.addEventListener('click', function(){
+
+// succes alert creation
+function alert_success(){
+    var alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>below <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+    var div_alert = document.getElementById('reservation_alert');
+    div_alert.innerHTML = alert;
+}
+document.querySelector('.modal .btn-primary').addEventListener('click', alert_success);
+
+// form submit
+document.querySelector('#res_btn').addEventListener('click', function(e){
     // data from reservation page form
     var first_name = document.querySelector('#firstName').value;
     var last_name = document.querySelector('#lastName').value;
-    var check_in = new Date(document.querySelector('#check-in').value);
-    var check_out = new Date(document.querySelector('#check-out').value);
+    var check_in = document.querySelector('#check-in').value;
+    var check_out = document.querySelector('#check-out').value;
     var rooms = document.querySelectorAll('input[name=room]');
 
-    // find the radio input that is checked
+    // find which room radio is check
     var room = 0
     rooms.forEach(function(item){
         if(item.checked) room = item;
     });
 
+    // modal just comes up if there is no empty field
+    var modal_res = document.querySelector('div[aria-labelledby=modalReservation]');
+    if(first_name && last_name && check_in && check_out && (room != 0)){
+        modal_res.setAttribute("id", "modalReservation");
+    }else{
+        modal_res.setAttribute("id", " ");
+    }
+
+    // parsing string to Date
+    check_in = new Date(check_in);
+    check_out = new Date(check_out);
+
     // room value
-    var value_raw_str = document.querySelector('#reservation_rooms #' + room.id + '_span').textContent;
-    var room_value = parseInt(value_raw_str.substring(1));
+    var raw_str_value = document.querySelector('#reservation_rooms #' + room.id + '_span').textContent;
+    var room_value = parseInt(raw_str_value.substring(1));
 
     // days difference between check-in and check-out
     var days_difference = Math.abs(check_out - check_in);
@@ -36,6 +57,12 @@ res_btn.addEventListener('click', function(){
     modal_check_in.innerHTML = '<strong>Check-in:</strong> ' + check_in;
     modal_check_out.innerHTML = '<strong>Check-out:</strong> ' + check_out;
     modal_final_cost.innerHTML = '<strong>Total Cost:</strong> $' + final_cost;
+
+    // stop form submit
+    e.preventDefault();
 });
+
+
+
 
 
