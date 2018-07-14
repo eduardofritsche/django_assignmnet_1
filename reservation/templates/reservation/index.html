@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% load static %}
 <!-- alerts -->
 <div id="reservation_alert"></div>
 
@@ -105,5 +105,5 @@
 
     </form>
 </div>
-
+<script src="{% static 'reservation/js/main.js' %}"></script>
 {% endblock %}
