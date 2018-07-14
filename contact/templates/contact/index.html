@@ -18,54 +18,44 @@
         </div>
         </div>
 
-        <!-- email form -->
+        <!-- contact form -->
         <div class="col-md-6">
-            <form action="#" class="my-5">
+            <form action="{% url 'contact:confirmation' %}" method="POST" class="my-5">
+            {% csrf_token %}
+
+                <!-- Full name -->
                 <div class="form-group">
                     <label for="contact_name">Full Name</label>
                     <input type="text" class="form-control" id="contact_name" placeholder="user name" required>
                 </div>
+
+                <!-- Email -->
                 <div class="form-group">
                     <label for="contact_email">Email address</label>
                     <input type="email" class="form-control" id="contact_email" placeholder="name@example.com" required>
                 </div>
+
+                <!-- Subject -->
                 <div class="form-group">
                     <label for="contact_subject">Subject</label>
                     <input type="text" class="form-control" id="contact_subject" placeholder="subject" required>
                 </div>
+
+                <!-- Message -->
                 <div class="form-group">
-                    <label for="contact_text">Example textarea</label>
-                    <textarea class="form-control" id="contact_text" rows="3"></textarea>
+                    <label for="contact_text">Message</label>
+                    <textarea class="form-control" id="contact_text" rows="3" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3" data-toggle="modal" data-target="#exampleModal">Send</button>
+
+                <!-- Send Button -->
+                <button type="submit" class="btn btn-primary mt-3">Send</button>
             </form>
         </div>
+        <!-- /.col -->
 
     </div>
-
+    <!-- /.row -->
+    
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <!-- <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">message</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div> -->
-        <div class="modal-body">
-            Message sent successfully
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        </div>
-        </div>
-    </div>
-</div>
+<!-- /.container -->
 {% endblock %}

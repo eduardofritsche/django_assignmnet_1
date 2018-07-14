@@ -1,13 +1,5 @@
 // RESERVATION page
 
-// succes alert creation
-function alert_success(){
-    var alert = "<div class='alert alert-success alert-dismissible fade show' role='alert'>below <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
-    var div_alert = document.getElementById('reservation_alert');
-    div_alert.innerHTML = alert;
-}
-document.querySelector('.modal .btn-primary').addEventListener('click', alert_success);
-
 // form submit
 document.querySelector('#res_btn').addEventListener('click', function(e){
     // data from reservation page form

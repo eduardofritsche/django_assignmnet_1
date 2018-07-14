@@ -8,8 +8,8 @@
     <!-- Reservation Header -->
     <h1 class="my-5">Reservation</h1>
     
-    <!-- Reservation Form {% url 'reservation:confirmation' %} -->
-    <form action="#" method="POST" class="mb-5">
+    <!-- Reservation Form -->
+    <form action="{% url 'reservation:confirmation' %}" method="POST" class="mb-5">
     {% csrf_token %}
         
         <!-- Name Row -->
@@ -72,7 +72,7 @@
         </ul>
 
         <!-- Button trigger modal -->
-        <button type="submit" id="res_btn" class="btn btn-primary" data-toggle="modal" data-target="#modalReservation">
+        <button type="submit" id="res_btn" class="btn btn-primary btn-lg btn-block mt-5" data-toggle="modal" data-target="#modalReservation">
             Confirm
         </button>
 
